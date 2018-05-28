@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel Name="WarehouseManagement" ShortName="WM">
+  <Table Name="AVA_WM_VIEW_OSTK" Description="库存任务" Type="bott_SimpleBusinessObject" State="bots_BoModelOnly" PropertyName="StockTask">
+    <Field Name="ComanyName" Description="公司账套" DataType="db_Alpha" SubType="st_None" EditSize="20" PropertyName="ComanyName" FixedDataType="System.String" />
+	<Field Name="ObjectKey" Description="编号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="ObjectKey" IsSystem="Yes" FixedDataType="System.Int32" IsPrimaryKey="Yes" />
+    <Field Name="Object" Description="类型" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="ObjectCode" IsSystem="Yes" FixedDataType="System.String" />
+    <Field Name="CreateDate" Description="创建日期" DataType="db_Date" SubType="st_None" EditSize="8" PropertyName="CreateDate" IsSystem="Yes" FixedDataType="System.DateTime" />
+    <Field Name="CreateTime" Description="创建时间" DataType="db_Date" SubType="st_Time" EditSize="8" PropertyName="CreateTime" IsSystem="Yes" FixedDataType="System.Int16" />
+    <Field Name="UpdateDate" Description="修改日期" DataType="db_Date" SubType="st_None" EditSize="8" PropertyName="UpdateDate" IsSystem="Yes" FixedDataType="System.DateTime" />
+    <Field Name="UpdateTime" Description="修改时间" DataType="db_Date" SubType="st_Time" EditSize="8" PropertyName="UpdateTime" IsSystem="Yes" FixedDataType="System.Int16" />
+    <Field Name="Ref1" Description="参考1" DataType="db_Alpha" SubType="st_None" EditSize="100" PropertyName="Reference1" IsSystem="Yes" FixedDataType="System.String" />
+    <Field Name="Ref2" Description="参考2" DataType="db_Alpha" SubType="st_None" EditSize="200" PropertyName="Reference2" IsSystem="Yes" FixedDataType="System.String" />
+    <Field Name="Remarks" Description="备注" DataType="db_Memo" SubType="st_None" EditSize="8" PropertyName="Remarks" IsSystem="Yes" FixedDataType="System.String" />
+    <Field Name="DocType" Description="单据类型" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="DocumentType" FixedDataType="System.String" />
+    <Field Name="DocEntry" Description="单据编号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="DocumentEntry" IsSystem="Yes" FixedDataType="System.Int32" />
+    <Field Name="DocLine" Description="单据行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="DocumentLineId" FixedDataType="System.Int32" />
+    <Field Name="BpCode" Description="业务伙伴编码" DataType="db_Alpha" SubType="st_None" EditSize="20" PropertyName="BusinessPartnerCode" FixedDataType="System.String" />
+    <Field Name="BpName" Description="业务伙伴名称" DataType="db_Alpha" SubType="st_None" EditSize="100" PropertyName="BusinessPartnerName" FixedDataType="System.String" />
+	<Field Name="TransType" Description="业务类型" DataType="db_Alpha" SubType="st_None" EditSize="1" PropertyName="TransactionType" FixedDataType="wmBoEnumerator.emTransactionType">
+      <ValidValue Value="I" Description="发货" />
+      <ValidValue Value="R" Description="收货" />
+      <ValidValue Value="T" Description="转储" />
+    </Field>
+    <Field Name="DocDate" Description="过账日期" DataType="db_Date" SubType="st_None" EditSize="8" PropertyName="PostingDate" IsSystem="Yes" FixedDataType="System.DateTime" />
+    <Field Name="DocDueDate" Description="到期日" DataType="db_Date" SubType="st_None" EditSize="8" PropertyName="DeliveryDate" IsSystem="Yes" FixedDataType="System.DateTime" />
+    <Field Name="TaxDate" Description="凭证日期" DataType="db_Date" SubType="st_None" EditSize="8" PropertyName="DocumentDate" IsSystem="Yes" FixedDataType="System.DateTime" />
+    <Field Name="SchCode" Description="方案编码" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="SchemaCode" FixedDataType="System.String" />
+  </Table>
+  <Table Name="AVA_WM_VIEW_STK1" Description="库存任务-行" Type="bott_SimpleBusinessObjectLines" State="bots_BoModelOnly" PropertyName="StockTaskLine">
+    <Field Name="ObjectKey" Description="编号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="ObjectKey" IsSystem="Yes" FixedDataType="System.Int32" IsPrimaryKey="Yes" />
+    <Field Name="Object" Description="类型" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="ObjectCode" IsSystem="Yes" FixedDataType="System.String" />
+    <Field Name="LineId" Description="行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="LineId" IsSystem="Yes" FixedDataType="System.Int32" IsPrimaryKey="Yes" />
+   <Field Name="Ref1" Description="参考1" DataType="db_Alpha" SubType="st_None" EditSize="100" PropertyName="Reference1" IsSystem="Yes" FixedDataType="System.String" />
+    <Field Name="Ref2" Description="参考2" DataType="db_Alpha" SubType="st_None" EditSize="200" PropertyName="Reference2" IsSystem="Yes" FixedDataType="System.String" />
+    <Field Name="DocType" Description="单据类型" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="DocumentType" FixedDataType="System.String" />
+    <Field Name="DocEntry" Description="单据编号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="DocumentEntry" IsSystem="Yes" FixedDataType="System.Int32" />
+    <Field Name="DocLine" Description="单据行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="DocumentLineId" FixedDataType="System.Int32" />
+    <Field Name="ItemCode" Description="物料编码" DataType="db_Alpha" SubType="st_None" EditSize="20" PropertyName="ItemCode" FixedDataType="System.String" />
+    <Field Name="ItemName" Description="物料描述" DataType="db_Alpha" SubType="st_None" EditSize="200" PropertyName="ItemDescription" FixedDataType="System.String" />
+    <Field Name="PackQty" Description="包装数量" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="PackageQuantity" FixedDataType="System.Int32" />
+    <Field Name="Quantity" Description="数量" DataType="db_Float" SubType="st_Quantity" EditSize="8" PropertyName="Quantity" FixedDataType="System.Decimal" />
+    <Field Name="Uom" Description="单位" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="InventoryUoM" FixedDataType="System.String" />
+    <Field Name="ManSerNum" Description="序号管理" DataType="db_Alpha" SubType="st_None" EditSize="1" DefaultValue="N" PropertyName="SerialNumberManagement" FixedDataType="wmBoEnumerator.emYesNo" />
+    <Field Name="ManBtchNum" Description="管理批号" DataType="db_Alpha" SubType="st_None" EditSize="1" DefaultValue="N" PropertyName="BatchNumberManagement" FixedDataType="wmBoEnumerator.emYesNo" />
+    <Field Name="ManServiceNum" Description="服务卡号管理" DataType="db_Alpha" SubType="st_None" EditSize="1" DefaultValue="N" PropertyName="ServiceNumberManagement" FixedDataType="wmBoEnumerator.emYesNo" />
+    <Field Name="Price" Description="单价" DataType="db_Float" SubType="st_Price" EditSize="8" PropertyName="Price" FixedDataType="System.Decimal" />
+    <Field Name="Currency" Description="价格货币" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="Currency" FixedDataType="System.String" />
+    <Field Name="Rate" Description="货币汇率" DataType="db_Float" SubType="st_Rate" EditSize="8" PropertyName="CurrencyRate" FixedDataType="System.Decimal" />
+    <Field Name="LineTotal" Description="行总计" DataType="db_Float" SubType="st_Sum" EditSize="8" PropertyName="LineTotal" FixedDataType="System.Decimal" />
+    <Field Name="FromWH" Description="从仓库" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="FromWarehose" FixedDataType="System.String" />
+    <Field Name="FromLC" Description="从库位" DataType="db_Alpha" SubType="st_None" EditSize="60" PropertyName="FromLocation" FixedDataType="System.String" />
+    <Field Name="ToWH" Description="到仓库" DataType="db_Alpha" SubType="st_None" EditSize="8" PropertyName="ToWarehouse" FixedDataType="System.String" />
+    <Field Name="ToLC" Description="到库位" DataType="db_Alpha" SubType="st_None" EditSize="60" PropertyName="ToLocation" FixedDataType="System.String" />
+    <Field Name="TransType" Description="业务类型" DataType="db_Alpha" SubType="st_None" EditSize="1" PropertyName="TransactionType" FixedDataType="wmBoEnumerator.emTransactionType">
+      <ValidValue Value="I" Description="发货" />
+      <ValidValue Value="R" Description="收货" />
+      <ValidValue Value="T" Description="转储" />
+    </Field>
+    <Field Name="BaseType" Description="基础单据类型" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="BaseDocumentType" FixedDataType="System.String" />
+    <Field Name="BaseEntry" Description="基础单据编号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="BaseDocumentEntry" FixedDataType="System.Int32" />
+    <Field Name="BaseLine" Description="基础单据行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="BaseDocumentLineId" FixedDataType="System.Int32" />
+    <Field Name="BSType" Description="原始单据类型" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="OriginalDocumentType" FixedDataType="System.String" />
+    <Field Name="BSEntry" Description="原始单据编号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="OriginalDocumentEntry" FixedDataType="System.Int32" />
+    <Field Name="BSLine" Description="原始单据行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="OriginalDocumentLineId" FixedDataType="System.Int32" />
+    <Field Name="ScanType" Description="扫描类型" DataType="db_Alpha" SubType="st_None" EditSize="3" PropertyName="ScanningType" FixedDataType="System.String">
+      <ValidValue Value="1" Description="一条码扫描" />
+      <ValidValue Value="2" Description="二条码扫描" />
+      <ValidValue Value="3" Description="三条码扫描" />
+    </Field>
+    <Field Name="WaterCode" Description="行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="WaterCode"  FixedDataType="System.Int32" />
+  </Table>
+  <Table Name="AVA_WM_VIEW_STK2" Description="库存任务-条码值" Type="bott_SimpleBusinessObjectLines" PropertyName="StockTaskLineGrapicCode">
+    <Field Name="ObjectKey" Description="编号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="ObjectKey" FixedDataType="System.Int32" IsPrimaryKey="Yes" />
+    <Field Name="Object" Description="类型" DataType="db_Alpha" SubType="st_None" EditSize="30" PropertyName="ObjectCode" FixedDataType="System.String" />
+    <Field Name="LineId" Description="行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="LineId" FixedDataType="System.Int32" IsPrimaryKey="Yes" />
+    <Field Name="Ref1" Description="参考1" DataType="db_Alpha" SubType="st_None" EditSize="100" PropertyName="Reference1" FixedDataType="System.String" />
+    <Field Name="Ref2" Description="参考2" DataType="db_Alpha" SubType="st_None" EditSize="200" PropertyName="Reference2" FixedDataType="System.String" />
+    <Field Name="BaseLineId" Description="基础行号" DataType="db_Numeric" SubType="st_None" EditSize="8" PropertyName="BaseLineId" FixedDataType="System.Int32" />
+    <Field Name="GrapicCode" Description="编码" DataType="db_Alpha" SubType="st_None" EditSize="255" PropertyName="GrapicCode" FixedDataType="System.String" />
+  </Table>
+  <BusinessObject Code="AVA_WM_STOCKTASK" Name="库存任务" TableName="AVA_WM_VIEW_OSTK" ObjectType="boud_SimpleBusinessObject" CanCancel="Yes" CanClose="Yes" CanDelete="Yes" CanYearTransfer="Yes" ManageSeries="Yes" OnlyForBoModel="Yes" PropertyName="StockTask">
+    <ChildTables>
+      <ChildTable TableName="AVA_WM_VIEW_STK1" />
+      <ChildTable TableName="AVA_WM_VIEW_STK2" />
+    </ChildTables>
+    <FindColumns />
+    <FormColumns />
+  </BusinessObject>
+</DomainModel>
