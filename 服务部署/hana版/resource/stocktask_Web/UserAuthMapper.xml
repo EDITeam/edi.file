@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.edi.initialfantasy.mapper.UserAuthMapper">
+    <resultMap id="BaseResultMap" type="org.edi.initialfantasy.bo.userauthrization.UserAuth">
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="auth_id" property="authId" jdbcType="VARCHAR" />
+        <result column="auth_type" property="authType" jdbcType="VARCHAR" />
+        <result column="auth_token" property="authToken" jdbcType="VARCHAR" />
+        <result column="auth_expires" property="authExpires" jdbcType="BIGINT" />
+        <result column="is_active" property="isActive" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <insert id="saveAuth" parameterType="org.edi.initialfantasy.bo.userauthrization.UserAuth" >
+        insert into AVA_IF_USERAUTH("user_id","auth_id","auth_type","auth_token","auth_expires","is_active")
+        values(#{userId},#{authId},#{authType},#{authToken},#{authExpires},#{isActive})
+    </insert>
+
+
+    <select id="serchAuth" resultMap="BaseResultMap">
+        SELECT * FROM AVA_IF_USERAUTH WHERE "user_id"=#{userId}
+    </select>
+
+
+    <update id="updateAuth"  parameterType="org.edi.initialfantasy.bo.userauthrization.UserAuth">
+        UPDATE AVA_IF_USERAUTH SET "auth_token"=#{authToken},"is_active"=#{isActive},"auth_expires"=#{authExpires} where "user_id"=#{userId}
+    </update>
+
+    <select id="serchAuthByToken" resultMap="BaseResultMap">
+        SELECT * FROM AVA_IF_USERAUTH WHERE "auth_token"=#{authToken}
+    </select>
+
+</mapper>

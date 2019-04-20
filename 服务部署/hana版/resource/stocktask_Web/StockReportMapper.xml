@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.edi.stocktask.mapper.StockReportMapper">
+    <resultMap id="BaseResultMap" type="org.edi.stocktask.bo.stockreport.StockReport">
+        <result column="CompanyName" property="companyName" jdbcType="VARCHAR" />
+        <result column="DocEntry" property="docEntry" jdbcType="INTEGER" />
+        <result column="DocNum" property="docNum" jdbcType="INTEGER" />
+        <result column="Period" property="period" jdbcType="VARCHAR" />
+        <result column="Object" property="objectCode" jdbcType="VARCHAR" />
+        <result column="Transfered" property="transfered" jdbcType="VARCHAR" />
+        <result column="CreateDate" property="createDate" jdbcType="DATE" />
+        <result column="CreateTime" property="createTime" jdbcType="INTEGER" />
+        <result column="UpdateDate" property="updateDate" jdbcType="DATE" />
+        <result column="UpdateTime" property="updateTime" jdbcType="INTEGER" />
+        <result column="Creator" property="createUserSign" jdbcType="VARCHAR" />
+        <result column="Updator" property="updateUserSign" jdbcType="VARCHAR" />
+        <result column="DocStatus" property="documentStatus" jdbcType="VARCHAR" />
+        <result column="DocDate" property="documentDate" jdbcType="DATE" />
+        <result column="DocDueDate" property="postingDate" jdbcType="DATE" />
+        <result column="TaxDate" property="deliveryDate" jdbcType="DATE" />
+        <result column="Ref1" property="reference1" jdbcType="VARCHAR" />
+        <result column="Ref2" property="reference2" jdbcType="VARCHAR" />
+        <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="B1DocEntry" property="b1DocEntry" jdbcType="INTEGER" />
+        <result column="BydUUID" property="bydUUID" jdbcType="VARCHAR" />
+        <result column="CusType" property="customType" jdbcType="VARCHAR" />
+        <result column="TransType" property="transactionType" jdbcType="VARCHAR" />
+        <result column="BpCode" property="businessPartnerCode" jdbcType="VARCHAR" />
+        <result column="BpName" property="businessPartnerName" jdbcType="VARCHAR" />
+        <result column="BaseType" property="baseDocumentType" jdbcType="VARCHAR" />
+        <result column="BaseEntry" property="baseDocumentEntry" jdbcType="INTEGER" />
+        <result column="IsDelete" property="isDeleted" jdbcType="VARCHAR" />
+        <result column="TargetType" property="targetDocumentType" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="BaseResultMapItem" type="org.edi.stocktask.bo.stockreport.StockReportItem">
+        <result column="DocEntry" property="docEntry" jdbcType="INTEGER" />
+        <result column="LineId" property="lineId" jdbcType="INTEGER" />
+        <result column="Object" property="objectCode" jdbcType="VARCHAR" />
+        <result column="LineStatus" property="lineStatus" jdbcType="VARCHAR" />
+        <result column="Ref1" property="reference1" jdbcType="VARCHAR" />
+        <result column="Ref2" property="reference2" jdbcType="VARCHAR" />
+        <result column="BaseType" property="baseDocumentType" jdbcType="VARCHAR" />
+        <result column="BaseEntry" property="baseDocumentEntry" jdbcType="INTEGER" />
+        <result column="BaseLine" property="baseDocumentLineId" jdbcType="INTEGER" />
+        <result column="Project" property="projectCode" jdbcType="VARCHAR" />
+        <result column="OcrCode1" property="distributionRule1" jdbcType="VARCHAR" />
+        <result column="OcrCode2" property="distributionRule2" jdbcType="VARCHAR" />
+        <result column="OcrCode3" property="distributionRule3" jdbcType="VARCHAR" />
+        <result column="OcrCode4" property="distributionRule4" jdbcType="VARCHAR" />
+        <result column="OcrCode5" property="distributionRule5" jdbcType="VARCHAR" />
+        <result column="BSType" property="originalDocumentType" jdbcType="VARCHAR" />
+        <result column="BSEntry" property="originalDocumentEntry" jdbcType="INTEGER" />
+        <result column="BSLine" property="originalDocumentLineId" jdbcType="INTEGER" />
+        <result column="TargetType" property="targetDocumentType" jdbcType="VARCHAR" />
+        <result column="TargetEntry" property="targetDocumentEntry" jdbcType="INTEGER" />
+        <result column="TargetLine" property="targetDocumentLineId" jdbcType="INTEGER" />
+        <result column="ItemCode" property="itemCode" jdbcType="VARCHAR" />
+        <result column="ItemName" property="itemDescription" jdbcType="VARCHAR" />
+        <result column="Quantity" property="quantity" jdbcType="DECIMAL" />
+        <result column="Uom" property="inventoryUoM" jdbcType="VARCHAR" />
+        <result column="ManSerNum" property="serialNumberManagement" jdbcType="VARCHAR" />
+        <result column="ManBtchNum" property="batchNumberManagement" jdbcType="VARCHAR" />
+        <result column="ManServiceNum" property="serviceNumberManagement" jdbcType="VARCHAR" />
+        <result column="Price" property="price" jdbcType="DECIMAL" />
+        <result column="Currency" property="currency" jdbcType="VARCHAR" />
+        <result column="Rate" property="currencyRate" jdbcType="DECIMAL" />
+        <result column="LineTotal" property="lineTotal" jdbcType="DECIMAL" />
+        <result column="FromWH" property="fromWarehose" jdbcType="VARCHAR" />
+        <result column="FromLC" property="fromLocation" jdbcType="VARCHAR" />
+        <result column="ToWH" property="toWarehouse" jdbcType="VARCHAR" />
+        <result column="ToLC" property="toLocation" jdbcType="VARCHAR" />
+
+    </resultMap>
+
+
+    <resultMap id="BaseResultMapMaterialItem" type="org.edi.stocktask.bo.stockreport.StockReportMaterialItem">
+        <result column="DocEntry" property="docEntry" jdbcType="INTEGER" />
+        <result column="LineId" property="lineId" jdbcType="INTEGER" />
+        <result column="Object" property="objectCode" jdbcType="VARCHAR" />
+        <result column="ItemCode" property="itemCode" jdbcType="VARCHAR" />
+        <result column="BatchNumber" property="batchNumber" jdbcType="VARCHAR" />
+        <result column="SerialNumber" property="serialNumber" jdbcType="VARCHAR" />
+        <result column="BarCode" property="barCode" jdbcType="VARCHAR" />
+        <result column="Quantity" property="quantity" jdbcType="DECIMAL" />
+		<result column="InDate" property="inDate" jdbcType="DATE"/>
+        <result column="PrdDate" property="prdDate" jdbcType="DATE"/>
+        <result column="ExpDate" property="expDate" jdbcType="DATE"/>
+        <result column="Remarks" property="remarks" jdbcType="NVARCHAR"/>
+    </resultMap>
+
+
+
+
+
+    <select id="fetchStockReportByEntry" resultMap="BaseResultMap" parameterType="int">
+        SELECT * FROM AVA_WM_OSRP  where "DocEntry"=#{docEntry} and "IsDelete" = 'N'
+    </select>
+    <select id="fetchStockReportItem" resultMap="BaseResultMapItem" parameterType="int">
+        SELECT * FROM AVA_WM_SRP1 where "DocEntry"=#{docEntry} order by "DocEntry" ,"ItemCode"
+    </select>
+
+    <insert id="saveStockReport" parameterType="org.edi.stocktask.bo.stockreport.StockReport">
+        INSERT INTO AVA_WM_OSRP("CompanyName" ,"DocEntry","DocNum" ,"Period" ,"Object" ,"Transfered" ,"CreateDate","CreateTime","UpdateDate","UpdateTime" ,"Creator","Updator","DocStatus","DocDate"
+        ,"DocDueDate","TaxDate","Ref1","Ref2" ,"Remarks","B1DocEntry","BydUUID","CusType","TransType","BpCode","BpName","BaseType","BaseEntry","TargetType")
+        VALUES (#{companyName} ,#{docEntry} ,#{docNum},#{period},#{objectCode} ,#{transfered},#{createDate},#{createTime},#{updateDate},#{updateTime} ,#{createUserSign} ,#{updateUserSign} ,#{documentStatus} ,#{documentDate},
+        #{postingDate} ,#{deliveryDate} ,#{reference1} ,#{reference2} ,#{remarks} ,#{b1DocEntry} ,#{bydUUID} ,#{customType} ,#{transactionType} ,#{businessPartnerCode},#{businessPartnerName},#{baseDocumentType} ,#{baseDocumentEntry},
+        #{targetDocumentType})
+    </insert>
+
+    <insert id="saveStockReportItem" parameterType="org.edi.stocktask.bo.stockreport.StockReportItem">
+        INSERT INTO AVA_WM_SRP1("DocEntry" ,"LineId" ,"Object" ,"LineStatus" ,"Ref1" ,"Ref2" ,"BaseType" ,"BaseEntry","BaseLine" ,"Project" ,"OcrCode1" ,"OcrCode2","OcrCode3"
+        ,"OcrCode4","OcrCode5","BSType" ,"BSEntry" ,"BSLine" ,"TargetType" ,"TargetEntry" ,"TargetLine" ,"ItemCode" ,"ItemName" ,"Quantity" ,"Uom" ,"ManSerNum" ,"ManBtchNum"
+        ,"ManServiceNum" ,"Price" ,"Currency" ,"Rate" ,"LineTotal" ,"FromWH" ,"FromLC" ,"ToWH" ,"ToLC")
+        VALUES (#{docEntry} ,#{lineId} ,#{objectCode} ,#{lineStatus} ,#{reference1} ,#{reference2},#{baseDocumentType} ,#{baseDocumentEntry} ,#{baseDocumentLineId} ,#{projectCode},#{distributionRule1}
+        ,#{distributionRule2},#{distributionRule3} ,#{distributionRule4} ,#{distributionRule5},#{originalDocumentType} ,#{originalDocumentEntry} ,#{originalDocumentLineId},#{targetDocumentType} ,#{targetDocumentEntry} ,#{targetDocumentLineId},#{itemCode}
+        ,#{itemDescription} ,#{quantity} ,#{inventoryUoM} ,#{serialNumberManagement} ,#{batchNumberManagement} ,#{serviceNumberManagement} ,#{price} ,#{currency} ,#{currencyRate} ,#{lineTotal} ,#{fromWarehose}
+        ,#{fromLocation} ,#{toWarehouse} ,#{toLocation})
+    </insert>
+
+
+
+    <delete id="deleteStockReport" parameterType="int">
+        delete from AVA_WM_OSRP
+        where "DocEntry" = #{docEntry}
+    </delete>
+
+    <delete id="deleteStockReportItem" parameterType="int">
+        delete from AVA_WM_SRP1
+        where "DocEntry" = #{docEntry}
+    </delete>
+
+
+
+    <select id="fetchStockReportByCondition" resultMap="BaseResultMap" parameterType="Map">
+        SELECT * FROM AVA_WM_OSRP
+        <where>
+            <if test="companyName != null and companyName != ''">
+                "CompanyName" = #{companyName}
+            </if>
+            <if test="baseDocumentType != null and baseDocumentType != ''">
+                and "BaseType" = #{baseDocumentType}
+            </if>
+            <if test="baseDocumentEntry != null and baseDocumentEntry != ''">
+                and "BaseEntry" = #{baseDocumentEntry}
+            </if>
+            and "IsDelete" = 'N'
+        </where>
+    </select>
+
+
+
+
+
+    <select id="fetchStockReportFuzzyByPage" resultMap="BaseResultMap" parameterType="map">
+        select * from(select ROW_NUMBER() over(order by "DocEntry" desc) as "rowId",* from "AVA_WM_OSRP"
+        where "IsDelete" = 'N'
+        <if test="value != null and value != ''">
+            and ("DocEntry" LIKE '%${value}%' or "BpCode" LIKE '%${value}%' or "BpName" LIKE '%${value}%' or "BaseEntry" LIKE '%${value}%')
+        </if>
+        <if test="creator != null and creator != ''">
+            and "Creator" = #{creator}
+        </if>
+        <if test="docStatus != null">
+            and "DocStatus" in
+            <foreach collection="docStatus" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        ) as t0
+        <where>
+            t0."rowId" between #{beginIndex} and #{limit}
+        </where>
+    </select>
+
+
+
+
+
+
+    <update id="updateStockReport"  parameterType="org.edi.stocktask.bo.stockreport.StockReport">
+        UPDATE AVA_WM_OSRP
+        <trim prefix="set" suffixOverrides=",">
+            <if test="companyName!=null">"CompanyName"=#{companyName},</if>
+            <if test="docNum!=null">"DocNum"=#{docNum},</if>
+            <if test="period!=null">"Period"=#{period},</if>
+            <if test="objectCode!=null">"Object"=#{objectCode},</if>
+            <if test="transfered!=null">"Transfered"=#{transfered},</if>
+            <if test="createDate!=null">"CreateDate"=#{createDate},</if>
+            <if test="createTime!=null">"CreateTime"=#{createTime},</if>
+            <if test="updateDate!=null">"UpdateDate"=#{updateDate},</if>
+            <if test="updateTime!=null">"UpdateTime"=#{updateTime},</if>
+            <if test="createUserSign!=null">"Creator"=#{createUserSign},</if>
+            <if test="updateUserSign!=null">"Updator"=#{updateUserSign},</if>
+            <if test="documentStatus!=null">"DocStatus"=#{documentStatus},</if>
+            <if test="documentDate!=null">"DocDate"=#{documentDate},</if>
+            <if test="postingDate!=null">"DocDueDate"=#{postingDate},</if>
+            <if test="deliveryDate!=null">"TaxDate"=#{deliveryDate},</if>
+            <if test="reference1!=null">"Ref1"=#{reference1},</if>
+            <if test="reference2!=null">"Ref2"=#{reference2},</if>
+            <if test="remarks!=null">"Remarks"=#{remarks},</if>
+            <if test="b1DocEntry!=null">"B1DocEntry"=#{b1DocEntry},</if>
+            <if test="bydUUID!=null">"BydUUID"=#{bydUUID},</if>
+            <if test="customType!=null">"CusType"=#{customType},</if>
+            <if test="transactionType!=null">"TransType"=#{transactionType},</if>
+            <if test="businessPartnerCode!=null">"BpCode"=#{businessPartnerCode},</if>
+            <if test="businessPartnerName!=null">"BpName"=#{businessPartnerName},</if>
+            <if test="baseDocumentType!=null">"BaseType"=#{baseDocumentType},</if>
+            <if test="baseDocumentEntry!=null">"BaseEntry"=#{baseDocumentEntry},</if>
+            <if test="targetDocumentType!=null">"TargetType"=#{targetDocumentType},</if>
+        </trim>
+        WHERE "DocEntry"=#{docEntry}
+    </update>
+
+    <update id="updateStockReportItem"  parameterType="org.edi.stocktask.bo.stockreport.StockReportItem">
+        UPDATE AVA_WM_SRP1
+        <trim prefix="set" suffixOverrides=",">
+            <if test="objectCode!=null">"Object"=#{objectCode},</if>
+            <if test="lineStatus!=null">"LineStatus"=#{lineStatus},</if>
+            <if test="reference1!=null">"Ref1"=#{reference1},</if>
+            <if test="reference2!=null">"Ref2"=#{reference2},</if>
+            <if test="baseDocumentType!=null">"BaseType"=#{baseDocumentType},</if>
+            <if test="baseDocumentEntry!=null">"BaseEntry"=#{baseDocumentEntry},</if>
+            <if test="baseDocumentLineId!=null">"BaseLine"=#{baseDocumentLineId},</if>
+            <if test="projectCode!=null">"Project"=#{projectCode},</if>
+            <if test="distributionRule1!=null">"OcrCode1"=#{distributionRule1},</if>
+            <if test="distributionRule2!=null">"OcrCode2"=#{distributionRule2},</if>
+            <if test="distributionRule3!=null">"OcrCode3"=#{distributionRule3},</if>
+            <if test="distributionRule4!=null">"OcrCode4"=#{distributionRule4},</if>
+            <if test="distributionRule5!=null">"OcrCode5"=#{distributionRule5},</if>
+            <if test="originalDocumentType!=null">"BSType"=#{originalDocumentType},</if>
+            <if test="originalDocumentEntry!=null">"BSEntry=#{originalDocumentEntry},</if>
+            <if test="originalDocumentLineId!=null">"BSLine"=#{originalDocumentLineId},</if>
+            <if test="targetDocumentType!=null">"TargetType"=#{targetDocumentType},</if>
+            <if test="targetDocumentEntry!=null">"TargetEntry"=#{targetDocumentEntry},</if>
+            <if test="targetDocumentLineId!=null">"TargetLine"=#{targetDocumentLineId},</if>
+            <if test="itemCode!=null">"ItemCode"=#{itemCode},</if>
+            <if test="itemDescription!=null">"ItemName"=#{itemDescription},</if>
+            <if test="quantity!=null">"Quantity"=#{quantity},</if>
+            <if test="inventoryUoM!=null">"Uom"=#{inventoryUoM},</if>
+            <if test="serialNumberManagement!=null">"ManSerNum"=#{serialNumberManagement},</if>
+            <if test="batchNumberManagement!=null">"ManBtchNum"=#{batchNumberManagement},</if>
+            <if test="serviceNumberManagement!=null">"ManServiceNum"=#{serviceNumberManagement},</if>
+            <if test="price!=null">"Price"=#{price},</if>
+            <if test="currency!=null">"Currency"=#{currency},</if>
+            <if test="currencyRate!=null">"Rate"=#{currencyRate},</if>
+            <if test="fromWarehose!=null">"FromWH"=#{fromWarehose},</if>
+            <if test="fromLocation!=null">"FromLC"=#{fromLocation},</if>
+            <if test="toWarehouse!=null">"ToWH"=#{toWarehouse},</if>
+            <if test="toLocation!=null">"ToLC"=#{toLocation},</if>
+        </trim>
+        WHERE "DocEntry"=#{docEntry}
+    </update>
+
+    <select id="fetchUnSyncStockReport" resultMap="BaseResultMap" >
+        SELECT top 10 * FROM AVA_WM_OSRP  where ("B1DocEntry" is null or "B1DocEntry" = 0) and "DocStatus" = 'O' and "IsDelete" = 'N'
+    </select>
+
+
+
+    <update id="updateStockReportDocStatus"  parameterType="org.edi.stocktask.bo.stockreport.StockReport">
+        UPDATE "AVA_WM_OSRP"
+        set "DocStatus"=#{documentStatus},
+        "B1DocEntry"=#{b1DocEntry}
+        WHERE "DocEntry"=#{docEntry};
+        UPDATE "AVA_WM_SRP1"
+        set "LineStatus"=#{documentStatus}
+        WHERE "DocEntry"=#{docEntry};
+    </update>
+
+    <!-- int fetchSequenceOfDocEntry();-->
+    <select id="fetchSequenceOfDocEntry" resultType="int">
+         SELECT "Seq_DocEntry".nextval FROM DUMMY;
+    </select>
+
+
+
+
+    <!--  List<StockReportMaterialItem> fetchStockReportMaterialItem(Integer docEntry,Integer lineId);-->
+    <select id="fetchStockReportMaterialItem" resultMap="BaseResultMapMaterialItem" parameterType="int">
+        SELECT * FROM AVA_WM_SRP2 where "DocEntry"=#{0} and "LineId" =#{1}
+    </select>
+
+
+    <!--void saveStockReportMaterialItem(StockReportMaterialItem stockReportMaterialItem);-->
+    <insert id="saveStockReportMaterialItem" parameterType="org.edi.stocktask.bo.stockreport.StockReportMaterialItem">
+     INSERT INTO AVA_WM_SRP2("DocEntry","LineId","Object","ItemCode","BarCode","BatchNumber","SerialNumber","Quantity"
+                            ,"InDate","ExpDate","PrdDate","Remarks")
+    VALUES(#{docEntry} ,#{lineId} ,#{objectCode} ,#{itemCode} ,#{barCode} ,#{batchNumber},#{serialNumber} ,#{quantity}
+                            ,#{inDate},#{expDate},#{prdDate},#{remarks})
+   </insert>
+
+
+    <!--void deleteStockReportMaterialItem(int docEntry);-->
+    <delete id="deleteStockReportMaterialItem" parameterType="int">
+        delete from AVA_WM_SRP2
+        where "DocEntry" = #{docEntry}
+    </delete>
+
+    <!--void updateIsDelete(Integer docEntry);-->
+    <update id="updateIsDelete"  parameterType="int">
+        UPDATE AVA_WM_OSRP set "IsDelete"='Y' WHERE "DocEntry"=#{docEntry};
+    </update>
+
+
+
+</mapper>

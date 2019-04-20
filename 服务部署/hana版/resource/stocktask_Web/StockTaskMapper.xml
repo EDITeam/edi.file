@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.edi.stocktask.mapper.StockTaskMapper">
+    <resultMap id="BaseResultMap" type="org.edi.stocktask.bo.stocktask.StockTask">
+        <result column="CompanyName" property="companyName" jdbcType="VARCHAR" />
+        <result column="ObjectKey" property="objectKey" jdbcType="INTEGER" />
+        <result column="TransType" property="transactionType" jdbcType="VARCHAR" />
+        <result column="Annotated" property="annotated" jdbcType="VARCHAR" />
+        <result column="DocStatus" property="documentStatus" jdbcType="VARCHAR" />
+        <result column="DocType" property="documentType" jdbcType="VARCHAR" />
+        <result column="DocEntry" property="documentEntry" jdbcType="INTEGER" />
+        <result column="BpCode" property="businessPartnerCode" jdbcType="VARCHAR" />
+        <result column="BpName" property="businessPartnerName" jdbcType="VARCHAR" />
+        <result column="DocDate" property="documentDate" jdbcType="DATE" />
+        <result column="DocDueDate" property="createDate" jdbcType="DATE" />
+        <result column="TaxDate" property="updateDate" jdbcType="DATE" />
+        <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="Ref1" property="reference1" jdbcType="VARCHAR" />
+        <result column="Ref2" property="reference2" jdbcType="VARCHAR" />
+        <result column="TargetType" property="targetDocumentType" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="BaseResultMapItem" type="org.edi.stocktask.bo.stocktask.StockTaskItem">
+        <result column="ObjectKey" property="objectKey" jdbcType="INTEGER" />
+        <result column="LineId" property="lineId" jdbcType="INTEGER" />
+        <result column="TransType" property="transactionType" jdbcType="VARCHAR" />
+        <result column="LineStatus" property="lineStatus" jdbcType="VARCHAR" />
+        <result column="DocType" property="documentType" jdbcType="INTEGER" />
+        <result column="DocEntry" property="documentEntry" jdbcType="INTEGER" />
+        <result column="DocLine" property="documentLineId" jdbcType="INTEGER" />
+        <result column="BaseType" property="baseDocumentType" jdbcType="INTEGER" />
+        <result column="BaseEntry" property="baseDocumentEntry" jdbcType="INTEGER" />
+        <result column="BaseLine" property="baseDocumentLineId" jdbcType="INTEGER" />
+        <result column="BSType" property="originalDocumentType" jdbcType="INTEGER" />
+        <result column="BSEntry" property="originalDocumentEntry" jdbcType="INTEGER" />
+        <result column="BSLine" property="originalDocumentLineId" jdbcType="INTEGER" />
+        <result column="ItemCode" property="itemCode" jdbcType="VARCHAR" />
+        <result column="ItemName" property="itemDescription" jdbcType="VARCHAR" />
+        <result column="ManBtchNum" property="batchNumberManagement" jdbcType="VARCHAR" />
+        <result column="ManSerNum" property="serialNumberManagement" jdbcType="VARCHAR" />
+        <result column="InvntryUom" property="inventoryUoM" jdbcType="VARCHAR" />
+        <result column="ScanType" property="scanningType" jdbcType="INTEGER" />
+        <result column="Price" property="price" jdbcType="DECIMAL" />
+        <result column="Currency" property="currency" jdbcType="VARCHAR" />
+        <result column="Rate" property="currencyRate" jdbcType="DECIMAL" />
+        <result column="LineTotal" property="lineTotal" jdbcType="DECIMAL" />
+        <result column="FromWH" property="fromWarehose" jdbcType="VARCHAR" />
+        <result column="FromLC" property="fromLocation" jdbcType="VARCHAR" />
+        <result column="ToWH" property="toWarehouse" jdbcType="VARCHAR" />
+        <result column="ToLC" property="toLocation" jdbcType="VARCHAR" />
+        <result column="Ref1" property="reference1" jdbcType="VARCHAR" />
+        <result column="Ref2" property="reference2" jdbcType="VARCHAR" />
+        <result column="Quantity" property="quantity" jdbcType="DECIMAL" />
+        <result column="OpenQuantity" property="openQuantity" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <resultMap id="MaterialMap" type="org.edi.stocktask.bo.material.Material">
+        <result column="ItemCode" property="itemCode" jdbcType="VARCHAR" />
+        <result column="ItemName" property="itemDescription" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="fetchStockTaskItem" resultMap="BaseResultMapItem">
+        SELECT * FROM AVA_WM_VIEW_STK1 where "ObjectKey"=#{0} and "DocType" =  #{1} order by "DocEntry" ,"ItemCode"
+    </select>
+
+    <select id="fetchSyncStockTaskItem" resultMap="BaseResultMapItem" >
+      select * from  AVA_WM_VIEW_STK1 t1 where "ObjectKey" = #{0}  and  t1."DocType" = #{1}
+    </select>
+
+    <!-- List<IStockTask> fetchStockTaskFuzzyByPage(HashMap<String,Object> params);-->
+    <select id="fetchStockTaskFuzzyByPage" resultMap="BaseResultMap" parameterType="map">
+        select * from(select ROW_NUMBER() over(order by "DocType","ObjectKey" desc) as "rowId",* from "AVA_WM_VIEW_OSTK"
+        where 1=1
+        <if test="value != null and value != ''">
+            and ("DocEntry" LIKE '%${value}%'  or "BpCode" LIKE '%${value}%' or "BpName" LIKE '%${value}%')
+        </if>
+        <if test="reporterId != null and value != ''">
+            and "ReporterId" = #{reporterId}
+        </if>
+        <if test="docStatus != null">
+            and "DocStatus" in
+            <foreach collection="docStatus" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        ) as t0
+        <where>
+            t0."rowId" between #{beginIndex}
+            and #{limit}
+        </where>
+    </select>
+
+
+
+
+
+
+    <select id="fetchStockTaskByCondition" resultMap="BaseResultMap" parameterType="Map">
+        SELECT * FROM "AVA_WM_VIEW_OSTK"
+        <where>
+            <if test="docEntry != null and docEntry != ''">
+                "DocEntry" = #{docEntry}
+            </if>
+            <if test="docType != null and docType != ''">
+                and "DocType" = #{docType}
+            </if>
+        </where>
+    </select>
+
+    <select id="fetchStockTaskMaterial" resultMap="MaterialMap">
+        SELECT "ItemCode","ItemName"  FROM "AVA_WM_VIEW_STK1" where "ObjectKey"=#{objectKey} and "OpenQuantity" > 0
+    </select>
+
+
+
+    <!--  List<IStockTaskItem> fetchNoDealStockTaskItem(Integer docEntry,String docType);-->
+    <select id="fetchNoDealStockTaskItem" resultMap="BaseResultMapItem">
+        SELECT * FROM "AVA_WM_VIEW_STK1" where "DocEntry"=#{0} and "DocType" =  #{1} and "LineStatus" !='C' order by "DocEntry" ,"ItemCode"
+    </select>
+
+
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.edi.stocktask.mapper.CodeBarMapper">
+    <resultMap id="BaseResultMap" type="org.edi.stocktask.bo.codeBar.CodeBar">
+        <result column="ProName" property="proName" jdbcType="VARCHAR" />
+        <result column="ProValue" property="proValue" jdbcType="VARCHAR" />
+        <result column="ProDesc" property="proDesc" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <parameterMap id="codeBarParam" type="map">
+        <parameter property="itemCode" jdbcType="NVARCHAR" mode="IN"/>
+        <parameter property="codebar" jdbcType="NVARCHAR" mode="IN"/>
+        <parameter property="baseType" jdbcType="NVARCHAR" mode="IN"/>
+        <parameter property="baseEntry" jdbcType="INTEGER" mode="IN"/>
+        <parameter property="baseLine" jdbcType="INTEGER" mode="IN"/>
+    </parameterMap>
+
+    <parameterMap id="strengthenCodeBarParam" type="map">
+        <parameter property="itemCode" jdbcType="NVARCHAR" mode="IN"/>
+        <parameter property="codebar" jdbcType="NVARCHAR" mode="IN"/>
+        <parameter property="baseType" jdbcType="NVARCHAR" mode="IN"/>
+        <parameter property="baseEntry" jdbcType="INTEGER" mode="IN"/>
+        <parameter property="baseLine" jdbcType="INTEGER" mode="IN"/>
+    </parameterMap>
+
+    <parameterMap id="BatchCodeBarParamMap" type="map">
+        <parameter property="baseType" jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="baseEntry" jdbcType="INTEGER" mode="IN"/>
+    </parameterMap>
+
+    <resultMap id="BatchCodeBarResultMap" type="org.edi.stocktask.dto.CodeBarParseResult">
+        <result column="BaseType" property="baseType" jdbcType="VARCHAR" />
+        <result column="BaseEntry" property="baseEntry" jdbcType="INTEGER" />
+        <result column="BaseLine" property="baseLine" jdbcType="INTEGER" />
+        <result column="ItemCode" property="itemCode" jdbcType="VARCHAR" />
+        <result column="CodeBar" property="codeBar" jdbcType="VARCHAR" />
+        <result column="InDate" property="inDate" jdbcType="DATE"/>
+        <result column="PrdDate" property="prdDate" jdbcType="DATE"/>
+        <result column="ExpDate" property="expDate" jdbcType="DATE"/>
+        <result column="Remarks" property="remarks" jdbcType="NVARCHAR"/>
+    </resultMap>
+    
+
+    <select id="parseCodeBar" statementType="CALLABLE" parameterMap="codeBarParam" resultMap="BaseResultMap">
+        {call AVA_SP_PARSE_CODEBAR(
+        #{itemCode, jdbcType = NVARCHAR, mode = IN},
+        #{codebar, jdbcType = NVARCHAR, mode = IN},
+        #{baseType, jdbcType = NVARCHAR, mode = IN},
+        #{baseEntry, jdbcType = INTEGER, mode = IN},
+        #{baseLine, jdbcType = INTEGER, mode = IN},
+        #{code, jdbcType = INTEGER, mode = OUT},
+        #{message, jdbcType = NVARCHAR, mode = OUT}
+        )}
+    </select>
+
+
+
+    <!-- List<ICodeBar> strengthenParseCodeBar(HashMap<String,Object> codeBarParam);-->
+    <select id="strengthenParseCodeBar" statementType="CALLABLE" parameterMap="strengthenCodeBarParam" resultMap="BaseResultMap">
+        {call AVA_SP_PARSE_CODEBAR(
+        #{itemCode, jdbcType = NVARCHAR, mode = IN},
+        #{codebar, jdbcType = NVARCHAR, mode = IN},
+        #{baseType, jdbcType = NVARCHAR, mode = IN},
+        #{baseEntry, jdbcType = INTEGER, mode = IN},
+        #{baseLine, jdbcType = INTEGER, mode = IN},
+        'CODEBARQUANTITY',
+        #{code, jdbcType = INTEGER, mode = OUT},
+        #{message, jdbcType = NVARCHAR, mode = OUT}
+        )}
+    </select>
+
+
+    <!-- List<CodeBarAnalysis> parseBatchCodeBar(HashMap<String,Object> codeBarParamsList);-->
+    <select id="parseBatchCodeBar" statementType="CALLABLE" parameterMap="BatchCodeBarParamMap"  resultMap="BatchCodeBarResultMap">
+        {call AVA_SP_BATCH_PARSE_CODEBAR(
+        'CODEBARLIST',
+        #{baseType, jdbcType = NVARCHAR, mode = IN},
+        #{baseEntry, jdbcType = INTEGER, mode = IN},
+        #{code, jdbcType = INTEGER, mode = OUT},
+        #{message, jdbcType = NVARCHAR, mode = OUT}
+        )}
+    </select>
+
+    <insert id="addCodeBarParseParam" parameterType="org.edi.stocktask.dto.ItemCodeQuantity">
+        insert into CODEBARQUANTITY("ItemCode","Quantity") values (#{itemCode},#{quantity})
+    </insert>
+
+    <insert id="addCodeBarBatchParseParam" parameterType="org.edi.stocktask.dto.CodeBarParseParam">
+        insert into CODEBARLIST("CodeBar","BaseLine","ItemCode","Quantity","QtyPlan","Remark")
+        values (#{codeBar},#{baseLine},#{itemCode},#{quantity},#{qtyPlan},#{remark})
+    </insert>
+</mapper>

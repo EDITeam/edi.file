@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.edi.initialfantasy.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="org.edi.initialfantasy.bo.user.User" >
+    <id column="id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="is_mobile_user" property="isMobileUser" jdbcType="VARCHAR" />
+    <result column="mobile_password" property="mobilePassword" jdbcType="VARCHAR" />
+    <result column="companyId" property="companyId" jdbcType="INTEGER" />
+    <result column="is_supper" property="isSupperUser" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <select id="getUserByCompany" resultMap="BaseResultMap" parameterType="Map">
+   select t0.* from AVA_IF_VIEW_USER t0 inner join AVA_IF_COMPANY t1 on t0."companyId" = t1."companyId"
+    where "companyName" = #{companyName} and t0."user_name" = #{userName}
+  </select>
+
+  <select id="getUserBySelect" resultMap="BaseResultMap">
+  SELECT * FROM AVA_IF_VIEW_USER WHERE "user_name"=#{0} and "mobile_password"=#{1}
+  </select>
+
+  <select id="getUserByName" resultMap="BaseResultMap">
+  SELECT * FROM AVA_IF_VIEW_USER WHERE "user_name"=#{account}
+  </select>
+  <select id="getUserByToken" resultMap="BaseResultMap">
+  SELECT t0.* FROM AVA_IF_VIEW_USER t0 inner join AVA_IF_USERAUTH t1 on t0."id" = t1."user_id" WHERE t1."auth_token"=#{token}
+  </select>
+
+</mapper>

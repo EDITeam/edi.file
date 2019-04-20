@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<companys>
+    <company>
+        <B1CompanyName>LDK</B1CompanyName>
+        <DBServer>192.168.1.252:30015</DBServer>
+        <B1Company>SBO_LDK_TEST</B1Company>
+        <B1User>manager</B1User>
+        <B1Password>1234</B1Password>
+        <B1LicenseServer>192.168.1.252:40000</B1LicenseServer>
+        <B1SLDServer>192.168.1.252:40000</B1SLDServer>
+        <B1DbType>dst_HANADB</B1DbType>
+        <B1DbUser>SYSTEM</B1DbUser>
+        <B1DbPassword>LiDaKang2018</B1DbPassword>
+        <B1Language>ln_Chinese</B1Language>
+        <B1DbUseTrusted>TRUE</B1DbUseTrusted>
+    </company>
+</companys>
