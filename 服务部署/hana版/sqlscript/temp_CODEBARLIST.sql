@@ -1,6 +1,6 @@
 
 CREATE global temporary TABLE  CODEBARLIST (
-	"ID" nvarchar(36) not null,
+	"Id" nvarchar(36) not null,
 	"CodeBar" nvarchar(600) NULL,
 	"BaseLine" int NULL,
 	"ItemCode" nvarchar(30) NULL,

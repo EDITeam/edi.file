@@ -1,5 +1,6 @@
 
 CREATE Type tp_CodeBarList AS TABLE(
+	"Id" nvarchar(36) not null,
 	"CodeBar" nvarchar(600) NULL,
 	"BaseLine" int NULL,
 	"ItemCode" nvarchar(30) NULL,
