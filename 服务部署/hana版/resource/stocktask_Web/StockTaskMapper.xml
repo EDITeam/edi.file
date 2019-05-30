@@ -74,7 +74,7 @@
         <if test="value != null and value != ''">
             and ("DocEntry" LIKE '%${value}%'  or "BpCode" LIKE '%${value}%' or "BpName" LIKE '%${value}%')
         </if>
-        <if test="reporterId != null and value != ''">
+        <if test="reporterId != null and reporterId != ''">
             and "ReporterId" = #{reporterId}
         </if>
         <if test="docStatus != null">
