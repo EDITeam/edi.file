@@ -122,7 +122,7 @@
 
 
 
-* 注意shortName要与配置文件中的shortName的值一致。
+* 注意shortName，companyName要与配置文件中的shortName，companyName的值一致。
 
 
 
